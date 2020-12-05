@@ -5,15 +5,17 @@ import {
   Panel,
   Views,
   View,
-  Popup,
   Page,
   Navbar,
   Toolbar,
-  NavRight,
+  List,
+  ListItem,
   Link,
 } from 'framework7-react';
 import cordovaApp from '../js/cordova-app';
 import routes from '../js/routes';
+import ProductList from '../assets/products.jsx';
+import CategoryList from '../assets/categories.jsx';
 
 export default class extends React.Component {
   constructor() {
@@ -30,30 +32,14 @@ export default class extends React.Component {
         data: function () {
           return {
 
-            // Demo products for Catalog section
-            products: [
-              {
-                id: '1',
-                title: 'Apple iPhone 8',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
-              },
-              {
-                id: '2',
-                title: 'Apple iPhone 8 Plus',
-                description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
-              },
-              {
-                id: '3',
-                title: 'Apple iPhone X',
-                description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
-              },
-            ]
+            products: ProductList,
           };
         },
 
         // App routes
         routes: routes,
 
+        categories: CategoryList,
 
         // Input settings
         input: {
@@ -66,32 +52,32 @@ export default class extends React.Component {
           androidOverlaysWebView: false,
         },
       },
-      // Login screen demo data
-      username: '',
-      password: '',
     }
   }
   render() {
     return (
       <App params={ this.state.f7params } >
-
-        {/* Left panel with cover effect*/}
         <Panel left cover themeDark>
           <View>
             <Page>
-              <Navbar title="Kategorie produktů"/>
-              {/* Nějaký list view */}
+              <Navbar title="Kategorie produktů" />
+              <List>
+                {this.state.f7params.categories.map((category) => (
+                  <ListItem
+                    key={category.id}
+                    title={category.name}
+                    link={`/category/${category.id}/`}
+                  />
+                ))}
+              </List>
             </Page>
           </View>
         </Panel>
-
-        {/* Views/Tabs container */}
         <Views tabs className="safe-areas">
-          {/* Tabbar for switching views-tabs */}
           <Toolbar tabbar labels bottom>
-            <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Katalog" />
-            <Link tabLink="#view-account" iconIos="f7:square_list_fill" iconAurora="f7:square_list_fill" iconMd="material:view_list" text="Účet" />
-            <Link tabLink="#view-about  " iconIos="f7:gear" iconAurora="f7:gear" iconMd="material:settings" text="O aplikaci" />
+            <Link tabLink="#view-home" tabLinkActive iconIos="f7:list_bullet_below_rectangle" iconAurora="f7:list_bullet_below_rectangle" iconMd="material:list" text="Katalog" />
+            <Link tabLink="#view-account" iconIos="f7:person_circle" iconAurora="f7:person_circle" iconMd="material:account_circle" text="Účet" />
+            <Link tabLink="#view-about  " iconIos="f7:app_badge_fill" iconAurora="f7:app_badge_fill" iconMd="material:widgets" text="O aplikaci" />
           </Toolbar>
 
           <View id="view-home" main tab tabActive url="/" />
