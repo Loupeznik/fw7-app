@@ -1,30 +1,37 @@
 import React from 'react';
-import { Page, Navbar, BlockTitle, Block } from 'framework7-react';
+import { Page, Appbar, Button } from 'framework7-react';
+import ProductList from '../assets/products.jsx';
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    var productId = props.f7route.params.id;
-    var currentProduct;
-    this.$f7.data.products.forEach(function (product) {
-      if (product.id === productId) {
-        currentProduct = product;
-      }
-    });
+    var productId = props.f7route.params.pid;
+    var products = ProductList;
 
     this.state = {
-      product: currentProduct,
+      currentProduct: products[productId-1],
     };
 
   }
   render() {
     return (
       <Page name="product">
-        <Navbar title={this.state.product.title} backLink="Back" />
-        <BlockTitle>About {this.state.product.title}</BlockTitle>
-        <Block strong>
-          {this.state.product.description}
-        </Block>
+        <Appbar>
+        <div className="left">
+            <Button
+              small
+              back
+              className="display-flex"
+              iconF7="arrow_left"
+            />
+          </div>
+        <div className="right">
+          <p className="navbar-text">
+          {this.state.currentProduct.title}
+          </p>
+        </div>
+        </Appbar>
+        
       </Page>
     );
   }

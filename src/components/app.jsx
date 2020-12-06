@@ -2,14 +2,9 @@ import React from 'react';
 import { Device }  from 'framework7/framework7-lite.esm.bundle.js';
 import {
   App,
-  Panel,
   Views,
   View,
-  Page,
-  Navbar,
   Toolbar,
-  List,
-  ListItem,
   Link,
 } from 'framework7-react';
 import cordovaApp from '../js/cordova-app';
@@ -25,13 +20,12 @@ export default class extends React.Component {
       // Framework7 Parameters
       f7params: {
         id: 'io.framework7.myapp', // App bundle ID
-        name: 'Random aplikace', // App name
+        name: 'Katalog elektroniky', // App name
         theme: 'auto', // Automatic theme detection
 
         // App root data
         data: function () {
           return {
-
             products: ProductList,
           };
         },
@@ -57,22 +51,6 @@ export default class extends React.Component {
   render() {
     return (
       <App params={ this.state.f7params } >
-        <Panel left cover themeDark>
-          <View>
-            <Page>
-              <Navbar title="Kategorie produktů" />
-              <List>
-                {this.state.f7params.categories.map((category) => (
-                  <ListItem
-                    key={category.id}
-                    title={category.name}
-                    link={`/category/${category.id}/`}
-                  />
-                ))}
-              </List>
-            </Page>
-          </View>
-        </Panel>
         <Views tabs className="safe-areas">
           <Toolbar tabbar labels bottom>
             <Link tabLink="#view-home" tabLinkActive iconIos="f7:list_bullet_below_rectangle" iconAurora="f7:list_bullet_below_rectangle" iconMd="material:list" text="Katalog" />

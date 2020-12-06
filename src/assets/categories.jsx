@@ -1,23 +1,28 @@
 var CategoryList = [
     {
-        id: 1,
+        cid: 1,
         name: 'Telefon',
+        plural: 'Telefony',
     },
     {
-        id: 2,
-        name: 'Laptop'
+        cid: 2,
+        name: 'Laptop',
+        plural: 'Laptopy',
     },
     {
-        id: 3,
+        cid: 3,
         name: 'Stolní počítač',
+        plural: 'Stolní počítače',
     },
     {
-        id: 4,
+        cid: 4,
         name: 'Tablet',
+        plural: 'Tablety',
     },
     {
-        id: 5,
+        cid: 5,
         name: 'Ostatní',
+        plural: 'Ostatní',
     },
 ];
 
