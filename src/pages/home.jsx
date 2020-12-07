@@ -67,8 +67,9 @@ export default class extends React.Component {
               after={product.category}
               footer={product.descShort}
               link={`/product/${product.pid}/`}
-              media={`/img/${product.image}`}
-            />
+            >
+              <img slot="media" src={`/static/img/${product.image}`} width="60" />
+            </ListItem>
           ))}
         </List>
       </Page>

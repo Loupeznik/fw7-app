@@ -14,7 +14,8 @@ export default class extends React.Component {
 
     var date = new Date();
 
-    date = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+    date =
+      date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
 
     this.state = {
       products: this.$f7.data.products,
@@ -28,7 +29,7 @@ export default class extends React.Component {
         <Appbar>
           <div className="left" />
           <div className="right">
-            <p className="navbar-text">Účet</p>
+            <p className="navbar-text">Můj účet</p>
           </div>
         </Appbar>
         <List mediaList>
@@ -37,17 +38,11 @@ export default class extends React.Component {
             title="Franta Vocásek"
             subtitle="franta007@seznam.cz"
           >
-            <img slot="media" />
+            <img slot="media" src="/static/img/profile-placeholder.jpg" />
           </ListItem>
-          <ListItem>
-            Bydliště: Nad Stráněmi 4511, 760 05 Zlín
-          </ListItem>
-          <ListItem>
-            Telefon: 755254895
-          </ListItem>
-          <ListItem>
-            Poslední přihlášení: {this.state.lastLogin}
-          </ListItem>
+          <ListItem>Bydliště: Nad Stráněmi 4511, 760 05 Zlín</ListItem>
+          <ListItem>Telefon: 755254895</ListItem>
+          <ListItem>Poslední přihlášení: {this.state.lastLogin}</ListItem>
         </List>
         <List>
           <ListItem title="Moje objednávky" link />
@@ -69,8 +64,13 @@ export default class extends React.Component {
                     key={product.pid}
                     title={product.title}
                     subtitle={product.category}
-                    media={`/img/${product.image}`}
-                  />
+                  >
+                    <img
+                      slot="media"
+                      src={`/static/img/${product.image}`}
+                      width="60"
+                    />
+                  </ListItem>
                 );
               }
               return item;
